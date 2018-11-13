@@ -1,13 +1,14 @@
 package com.ns.greg.architecturecomponentsdemo
 
 import android.app.Application
-import com.ns.greg.architecturecomponentsdemo.db.AppDatabase
+import com.ns.greg.library.fancy_logger.FancyLogger
+import com.ns.greg.library.fancy_logger.Printer
 
 /**
  * @author gregho
  * @since 2018/5/17
  */
-class BaseApplication : Application() {
+class MainApplication : Application() {
 
   private val appExecutors: AppExecutors by lazy {
     AppExecutors()
@@ -15,8 +16,9 @@ class BaseApplication : Application() {
 
   override fun onCreate() {
     super.onCreate()
-    AppDatabase.init(applicationContext, appExecutors)
-    AppDatabase.getInstance().updateDatabaseCreated(applicationContext)
+    if (BuildConfig.DEBUG) {
+      FancyLogger.add(FancyLogger.LOW_PRIORITY, Printer.Builder().build())
+    }
   }
 
   fun getExecutors(): AppExecutors {

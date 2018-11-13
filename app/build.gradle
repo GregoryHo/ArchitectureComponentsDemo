@@ -24,19 +24,29 @@ android {
     sourceCompatibility buildVersions.sourceCompatibility
     targetCompatibility buildVersions.targetCompatibility
   }
-  kotlin {
-    experimental {
-      coroutines 'enable'
+  sourceSets {
+    main {
+      java.srcDirs += 'src/main/kotlin'
+    }
+    test {
+      java.srcDirs += 'src/test/koltin'
     }
   }
 }
 
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
-  implementation deps.kotlin.stdLib
+  implementation deps.kotlin.stdLib.jdk8
   implementation deps.androidSupport.appCompat
-  implementation deps.androidArch.roomRuntime
-  kapt deps.androidArch.roomCompiler
+  implementation deps.androidSupport.design
+  implementation deps.androidSupport.cardView
+  implementation deps.androidSupport.constraint
+  // android arch
+  implementation deps.androidArch.room.runtime
+  kapt deps.androidArch.room.compiler
+  // greg
+  implementation deps.greg.fancyLogger
+  implementation deps.greg.fastRecyclerView
   testImplementation 'junit:junit:4.12'
   androidTestImplementation 'com.android.support.test:runner:1.0.2'
   androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

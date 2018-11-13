@@ -11,15 +11,22 @@ import java.util.concurrent.Executors
  */
 class AppExecutors {
 
-  private val commonIo: Executor by lazy {
+  private val diskIo: Executor by lazy {
+    Executors.newSingleThreadExecutor()
+  }
+  private val networkIo: Executor by lazy {
     Executors.newCachedThreadPool()
   }
   private val mainThread: Executor by lazy {
     MainThreadExecutor()
   }
 
-  fun commonIo(): Executor {
-    return commonIo
+  fun diskIo(): Executor {
+    return diskIo
+  }
+
+  fun networkIo(): Executor {
+    return networkIo
   }
 
   fun mainThread(): Executor {

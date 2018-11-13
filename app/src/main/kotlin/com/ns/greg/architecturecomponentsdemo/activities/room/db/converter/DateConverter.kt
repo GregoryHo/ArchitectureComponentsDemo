@@ -1,6 +1,6 @@
-package com.ns.greg.architecturecomponentsdemo.db.converter
+package com.ns.greg.architecturecomponentsdemo.activities.room.db.converter
 
-import android.arch.persistence.room.TypeConverter
+import androidx.room.TypeConverter
 import java.util.Date
 
 /**
@@ -9,7 +9,7 @@ import java.util.Date
  */
 class DateConverter {
 
-  companion object {
+  companion object Functions {
 
     @TypeConverter
     @JvmStatic
