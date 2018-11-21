@@ -12,7 +12,7 @@ android {
     targetSdkVersion buildVersions.targetSdk
     versionCode 1
     versionName "1.0"
-    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
   }
   buildTypes {
     release {
@@ -31,23 +31,28 @@ android {
     test {
       java.srcDirs += 'src/test/koltin'
     }
+    androidTest {
+      java.srcDirs += 'src/androidTest/kotlin'
+    }
   }
 }
 
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation deps.kotlin.stdLib.jdk8
-  implementation deps.androidSupport.appCompat
-  implementation deps.androidSupport.design
-  implementation deps.androidSupport.cardView
-  implementation deps.androidSupport.constraint
+  implementation deps.android.support.appCompat
+  implementation deps.android.support.design
+  implementation deps.android.support.cardView
+  implementation deps.android.support.constraint
   // android arch
-  implementation deps.androidArch.room.runtime
-  kapt deps.androidArch.room.compiler
+  implementation deps.android.arch.room.runtime
+  kapt deps.android.arch.room.compiler
   // greg
   implementation deps.greg.fancyLogger
   implementation deps.greg.fastRecyclerView
+  // test
   testImplementation 'junit:junit:4.12'
-  androidTestImplementation 'com.android.support.test:runner:1.0.2'
-  androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+  androidTestImplementation deps.android.arch.room.testing
+  androidTestImplementation deps.atsl.runner
+  androidTestImplementation deps.espresso.core
 }
