@@ -180,7 +180,10 @@ class RoomActivity : AppCompatActivity() {
                 .also { cards ->
                   mainThread().execute {
                     queryingPb.visibility = View.INVISIBLE
-                    getCardAdapter().addItems(cards)
+                    with(getCardAdapter()) {
+                      addItems(cards)
+                      notifyDataSetChanged()
+                    }
                   }
                 }
           }
