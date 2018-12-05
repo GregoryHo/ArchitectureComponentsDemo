@@ -55,6 +55,7 @@ class CardDaoTest {
       assertEquals(0, this)
       Log.d(TAG, "database size: $this")
     }
+
     Log.d(TAG, "insert card")
     cardDao.insertCard(TestData.CARD_ENTITY)
     cardDao.getCards()
@@ -87,6 +88,7 @@ class CardDaoTest {
       assertEquals(this, "test")
       Log.d(TAG, "update description = $this")
     }
+
     Log.d(TAG, "delete all")
     cardDao.deleteAll()
     cardDao.getCards()
@@ -94,6 +96,7 @@ class CardDaoTest {
       assertEquals(0, this)
       Log.d(TAG, "database size: $this")
     }
+
     Log.d(TAG, "<-- END TEST")
   }
 }
